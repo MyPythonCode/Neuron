@@ -1,21 +1,25 @@
-import matplotlib.pyplot as plt
-import numpy as np
-
 """
 A Study Process Of A Neuron Object - Train Nand Gates
 """
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 """
 the gate inputs (x) need to be Constant - Don't change values!.
 x0 - is a DC - direct current as '1' all the time.
 z - is the desired outputs for Nand gate
 
-| x0 | x1 | x2 || z  |
-----------------------
-| 1  | 0  | 0  || 1  |
-| 1  | 0  | 1  || 1  |
-| 1  | 1  | 0  || 1  |
-| 1  | 1  | 1  || 0  |
+|---------------------------------------------------------------------------------------------------------------------|
+|----------------------------------| x0*w0 | x1*w1 | x2*w2 | s=c0+c1+c2 | if s>t n=1 | z-n | r*e | x0*d | x1*d | x2*d |
+| x0 | x1 | x2 | z  | w0 | w1 | w2 |   c0  |   c1  |   c2  |      s     |      n     |  e  |  d  |  w0  |  w1  |  w2  |
+|--------------|----|--------------|-----------------------|------------|------------|-----|-----|------|------|------|
+| 1  | 0  | 0  | 1  | 0  | 0  | 0  |       |       |       |            |            |     |     |      |      |      |
+| 1  | 0  | 1  | 1  |    |    |    |       |       |       |            |            |     |     |      |      |      |
+| 1  | 1  | 0  | 1  |    |    |    |       |       |       |            |            |     |     |      |      |      |
+| 1  | 1  | 1  | 0  |    |    |    |       |       |       |            |            |     |     |      |      |      |
+|---------------------------------------------------------------------------------------------------------------------|
+
 """
 
 x = [[1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
@@ -33,8 +37,8 @@ n = [0, 0, 0, 0]  # if s > t then n=1 else n=0
 e = [0, 0, 0, 0]  # error: e = z - n
 d = [0, 0, 0, 0]  # Correction: d = r * e
 
-t = 0.5         # threshold
-r = 0.1         # delta
+t = 0.5           # threshold
+r = 0.1           # delta
 
 def calculate_values():
     # TO IMPLEMENT
@@ -83,5 +87,7 @@ def print_values():
 
 def plot_graph():
     plt.plot([0, 0, 1, 1], [0, 1, 0, 1], 'ro')
+    plt.plot([-0.5, 1.5], [-0.5, 1.5])
+    plt.plot([-0.5, 1.5], [1.5, -0.5])
     plt.axis([-1, 2, -1, 2])
     plt.show()
