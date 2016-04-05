@@ -1,8 +1,6 @@
-"""
-This Program Makes A Neuron Object.
-"""
+from Neuron import Neuron
 
-import Neuron as nr
+x = Neuron("neuron")
 
-nr.print_values()
-nr.plot_graph()
+x.calculate_values()
+x.print_matrix()
