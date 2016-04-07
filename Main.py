@@ -1,3 +1,7 @@
+"""
+This Program Makes A Neuron Object.
+"""
+
 from Neuron import Neuron
 
 x = Neuron("neuron")

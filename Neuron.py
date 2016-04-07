@@ -23,27 +23,27 @@ class Neuron(object):
 
     """
 
-    x = [[1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
-    w = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]          # weights
-    c = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]          # c0=x0*w0 ; c1=x1*w1 ; c2=x2*w2
-    output = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]     # output: w0=x0*d ; w1=x1*d ; w2=x2*d
-
-    w_outputs = [0, 0, 0]
-
-    z = [1, 1, 1, 0]  # desired outputs for Nand gate - Don't change values!
-
-    s = [0, 0, 0, 0]  # sum: s = c0 + c1 + c2
-    n = [0, 0, 0, 0]  # if s > t then n=1 else n=0
-    e = [0, 0, 0, 0]  # error: e = z - n
-    d = [0, 0, 0, 0]  # Correction: d = r * e
-
-    t = 0.5           # threshold
-    r = 0.1           # delta
-
 
     def __init__(self, name):
+        """ constructor """
         self.name = name
 
+        self.x = [[1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
+        self.w = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]  # weights
+        self.c = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]  # c0=x0*w0 ; c1=x1*w1 ; c2=x2*w2
+        self.output = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]  # output: w0=x0*d ; w1=x1*d ; w2=x2*d
+
+        self.w_outputs = [0, 0, 0]
+
+        self.z = [1, 1, 1, 0]  # desired outputs for Nand gate - Don't change values!
+
+        self.s = [0, 0, 0, 0]  # sum: s = c0 + c1 + c2
+        self.n = [0, 0, 0, 0]  # if s > t then n=1 else n=0
+        self.e = [0, 0, 0, 0]  # error: e = z - n
+        self.d = [0, 0, 0, 0]  # Correction: d = r * e
+
+        self.t = 0.5  # threshold
+        self.r = 0.1  # delta
 
     def calculate_values(self):
 
