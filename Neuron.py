@@ -2,6 +2,8 @@
 A Study Process Of A Neuron Object - Train Nand Gates
 """
 
+import matplotlib.pyplot as plt
+
 class Neuron(object):
 
     condition = 'New'
@@ -46,33 +48,36 @@ class Neuron(object):
         self.r = 0.1  # delta
 
     def calculate_values(self):
+        xyz=0
+        while xyz < 4:
+            for i in range(4):
+                temp_sum = 0
+                for j in range(3):
+                    if i != 0:
+                        self.w[i][j] = self.w[i-1][j] + self.w_outputs[j]
 
-        for i in range(4):
-            temp_sum = 0
-            for j in range(3):
-                if i != 0:
-                    self.w[i][j] = self.w[i-1][j] + self.w_outputs[j]
+                    self.c[i][j] = self.x[i][j] * self.w[i][j]
+                    temp_sum += self.c[i][j]
 
-                self.c[i][j] = self.x[i][j] * self.w[i][j]
-                temp_sum += self.c[i][j]
-
-            self.s[i] = temp_sum
-            if self.s[i] > self.t:
-                self.n[i] = 1
-            else:
-                self.n[i] = 0
-
-            self.e[i] = self.z[i] - self.n[i]
-
-            self.d[i] = self.r * self.e[i]
-
-            for k in range(3):
-                self.w_outputs[k] = self.d[i] * self.x[i][k]
-                if i == 0:
-                    self.output[i][k] = self.w_outputs[k]
+                self.s[i] = temp_sum
+                if self.s[i] > self.t:
+                    self.n[i] = 1
                 else:
-                    self.output[i][k] = self.output[i-1][k] + self.w_outputs[k]
+                    self.n[i] = 0
 
+                self.e[i] = self.z[i] - self.n[i]
+
+                self.d[i] = self.r * self.e[i]
+
+                for k in range(3):
+                    self.w_outputs[k] = self.d[i] * self.x[i][k]
+                    if i == 0:
+                        self.output[i][k] = self.w_outputs[k]
+                    else:
+                        self.output[i][k] = self.output[i-1][k] + self.w_outputs[k]
+
+                xyz += 1
+                print("xyz: " + str(xyz))
 
     def print_matrix(self):
         """ this function print all the class values - DEBUG function """
@@ -109,3 +114,7 @@ class Neuron(object):
         print(temp_str + " |---------------------------------------------------------------------------------------------------------------------|\n")
 
 
+    def plot_graph(self):
+        plt.plot([0, 0, 1, 1], [0, 1, 0, 1], 'ro')
+        plt.axis([-1, 2, -1, 2])
+        plt.show()

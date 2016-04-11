@@ -8,3 +8,4 @@ x = Neuron("neuron")
 
 x.calculate_values()
 x.print_matrix()
+x.plot_graph()
