@@ -2,7 +2,9 @@
 A Study Process Of A Neuron Object - Train Nand Gates
 """
 
+import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 class Neuron(object):
 
@@ -115,6 +117,21 @@ class Neuron(object):
 
 
     def plot_graph(self):
-        plt.plot([0, 0, 1, 1], [0, 1, 0, 1], 'ro')
-        plt.axis([-1, 2, -1, 2])
+        fig, ax = plt.subplots()
+        ax.plot([0, 0, 1, 1], [0, 1, 0, 1], 'ro')
+        ax.set_ylim(-1, 2)
+        ax.set_xlim(-1, 2)
+
+        x = np.arange(-1, 2 * np.pi, 0.1)
+        line, = ax.plot(x, np.sin(x))
+
+        def animate(i):
+            line.set_ydata(np.sin(x + i / 10.0))
+            return line,
+
+        def init():
+            line.set_ydata(np.ma.array(x, mask=True))
+            return line,
+
+        ani = animation.FuncAnimation(fig, animate, np.arange(-1, 200), init_func=init, interval=100, blit=True)
         plt.show()
