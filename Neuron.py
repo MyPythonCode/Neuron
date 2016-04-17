@@ -126,7 +126,7 @@ class Neuron(object):
         line, = ax.plot(x, np.sin(x))
 
         def animate(i):
-            line.set_ydata(np.sin(x + i / 10.0))
+            line.set_ydata(np.sin(x + i ))
             return line,
 
         def init():
@@ -135,3 +135,4 @@ class Neuron(object):
 
         ani = animation.FuncAnimation(fig, animate, np.arange(-1, 200), init_func=init, interval=100, blit=True)
         plt.show()
+
